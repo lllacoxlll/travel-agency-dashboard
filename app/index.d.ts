@@ -92,7 +92,7 @@ declare interface StatsCard {
 
 declare interface TrendResult {
   trend: 'increment' | 'decrement' | 'no change'
-  precentage: number
+  percentage: number
 }
 
 declare interface DashboardStats {
