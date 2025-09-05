@@ -1,10 +1,15 @@
 import { Header, StatsCard, TripCard } from 'components'
 import React from 'react'
+import { getUser } from '~/appwrite/auth'
 import { user, dashboardStats, allTrips } from '~/constants'
+import type { Route } from './+types/dashboard'
 
 const { totalUsers, usersJoined, totalTrips, tripsCreated, userRole } = dashboardStats
 
-const Dashboard = () => {
+export const clientLoader = async () => await getUser()
+
+const Dashboard = ({ loaderData }: Route.ComponentProps) => {
+  const user = loaderData as User | null
   return (
     <main className="dashboard wrapper">
       <Header title={`Welcome ${user?.name ?? 'Guest'}`} description="Track activity, trends, and popular destinations in real time" />
@@ -22,15 +27,7 @@ const Dashboard = () => {
 
         <div className="trip-grid">
           {allTrips.slice(0, 4).map(({ id, name, imageUrls, itinerary, tags, estimatedPrice }) => (
-            <TripCard
-              key={id}
-              id={id.toString()}
-              name={name}
-              imageUrl={imageUrls[0]}
-              location={itinerary?.[0]?.location ?? ''}
-              tags={tags}
-              price={estimatedPrice}
-            />
+            <TripCard key={id} id={id.toString()} name={name} imageUrl={imageUrls[0]} location={itinerary?.[0]?.location ?? ''} tags={tags} price={estimatedPrice} />
           ))}
         </div>
       </section>
