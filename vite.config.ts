@@ -9,7 +9,7 @@ const sentryConfig: SentryReactRouterBuildOptions = {
   project: 'javascript-react',
   // An auth token is required for uploading source maps;
   // store it in an environment variable to keep it secure.
-  authToken: 'sntrys_eyJpYXQiOjE3NTY3NTY1NzAuMDMxNDE2LCJ1cmwiOiJodHRwczovL3NlbnRyeS5pbyIsInJlZ2lvbl91cmwiOiJodHRwczovL3VzLnNlbnRyeS5pbyIsIm9yZyI6ImFtYW5kYS1jb3gifQ == _3C8vrMVjNZvvWVM69hvWM96szIIKEi2m1YwsZR9Z7P0',
+  authToken: process.env.SENTRY_AUTH_TOKEN,
   // ...
 }
 
